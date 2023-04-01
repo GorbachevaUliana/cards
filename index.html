@@ -1,0 +1,81 @@
+<html>
+    <head><title>Cards</title>
+        <link rel="stylesheet" href="cards2.css">
+    </head>
+    <body>
+        <div class="game-container">
+  <div class="card active">
+    <img src="#" alt="Card Face">
+  </div>
+  <div class="card active">
+    <img src="#" alt="Card Face">
+  </div>
+  <div class="card block">
+    <img src="back.jpg" alt="Card Back">
+  </div>
+  <div class="card block">
+    <img src="back.jpg" alt="Card Back">
+  </div>
+  <div class="card block">
+    <img src="back.jpg" alt="Card Back">
+  </div>
+  <div class="card block">
+    <img src="back.jpg" alt="Card Back">
+  </div>
+  <div class="card block">
+    <img src="back.jpg" alt="Card Back">
+  </div>
+</div>
+    </body>
+    <script>
+//создается массив из карт
+const images = [
+  'card1.jpg',
+  'card2.jpg',
+  'card3.jpg',
+  'card4.jpg',
+  'card5.jpg',
+  'card6.jpg',
+  'card7.jpg'
+];
+
+//находятся все элементы с классом "card" и добавляются в переменную cards
+const cards = document.querySelectorAll('.card');
+var activeCard = null;
+
+//Обработчик события "click"
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.classList.contains('active')) { //если карта активна
+      card.classList.remove('active'); //удаляется класс "active"
+      card.classList.add('block'); //добавляется класс "block"
+      card.querySelector('img').src = 'back.jpg'; //масть меняется на рубашку
+    } else if (card.classList.contains('block')) { //если карта не активна
+      card.classList.remove('block'); //удаляется класс "block"
+      card.classList.add('active'); //добавляется класс "active"
+      const randomImage = getRandomImage(); //рубашка меняется на рандомное изображение масти
+      card.querySelector('img').src = randomImage;
+    }
+    card.classList.add('card-animation'); // добавляется класс "card-animation"
+    setTimeout(() => {
+      card.classList.remove('card-animation'); //удаляется через 600 миллисекунд
+    }, 600);
+  });
+});
+//Объявляется функция getRandomImage().
+function getRandomImage() {
+  const usedImages = []; //массив, в котором будут находиться изображения с классом "active"
+  cards.forEach(card => {
+    if (card.classList.contains('active')) {
+      usedImages.push(card.querySelector('img').src);
+    }
+  });
+    
+  const availableImages = images.filter(img => !usedImages.includes(img)); //массив, в котором содержатся неиспользованные изображения карт
+  const randomIndex = Math.floor(Math.random() * availableImages.length);
+  const randomImage = availableImages[randomIndex]; //рандомное изображение из массива "availableImages"
+  images.splice(images.indexOf(randomImage), 1); // удаление этого рандомного изображения из массива "images"
+  return randomImage;
+}
+    </script>
+</html>
