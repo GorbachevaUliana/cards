@@ -1,0 +1,28 @@
+.king{
+    border: 1px solid;
+    width:200px;
+    height: 500px;
+    margin-top: 200px;
+    margin-left: 200px;
+    background-color:beige;
+    position: absolute;
+    border-radius: 20px;
+}
+
+p{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.skirt{
+    border: 1px solid;
+    width: 200px;
+    height:500px;
+    top: 450px;
+    margin-bottom: 200px;
+    margin-left: 300px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: white;
+    background-image: repeating-linear-gradient(45deg, green, green 1px,  transparent 0.1px, transparent 10px), repeating-linear-gradient(-45deg,red, red 1px, transparent 0.1px, transparent 10px);
+}
